@@ -1,0 +1,60 @@
+{% load static %}<!DOCTYPE html>
+<html style="height: 100%;">
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}趣儿编{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    {% block stylesheet %}
+    {% endblock %}
+  </head>
+
+  <body style="height: 100%;width: 100%;">
+    {% block body %}
+    <nav class="navbar navbar-default" role="navigation" style="height: 100%;" >
+        <div class="container-fluid " style="position: absolute;top:0;height: 50px ;width: 100%;background-color: rgba(245, 189, 11);">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#" style="color: rgb(0, 0, 0); font-weight: bold;">趣儿编教学管理系统</a>
+            </div>
+            <div class="righ">
+                <ul class="nav navbar-nav">
+                
+                    <li class="dropdown ">
+                        <a href="#" class="dropdown-toggle " data-toggle="dropdown" style="font-size: small;color: rgb(219, 26, 26);">
+                            欢迎{{ request.session.user_name }}
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">个人设置</a></li>
+                            <li><a href="#">个人空间</a></li>
+                            <li><a href="/logout/">退出系统</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>  
+        <div style="margin-top: 50px;" >
+            <div style="width: 200px;background-color: rgb(253, 209, 0);position: absolute;left:0;">
+                <ul class="nav nav-pills nav-stacked" >
+                    <li ><a href="{% url 'home' %} " style="color: rgb(0, 0, 0);">Home</a></li>
+                    <li><a href="#" style="font-size:small ;color: rgb(0, 0, 0);">校区教案</a></li>
+                    <li><a href="{% url 'teacher' %}" style="font-size: small;color: rgb(0, 0, 0);">教师管理</a></li>
+                    <li><a href="#" style="font-size: small;color: rgb(0, 0, 0);">教室管理</a></li>
+                    <li><a href="#" style="font-size: small;color: rgb(0, 0, 0);">大课表</a></li>
+                    <li><a href="{% url 'student' %}" style="font-size: small;color: rgb(0, 0, 0);">学生管理</a></li>
+                    <li><a href="{% url 'finance' %}" style="font-size: small;color: rgb(0, 0, 0);">财务管理</a></li>
+                </ul>
+            </div>
+            <div style="margin-left: 200px;">
+
+                {% block Navigation %}
+            
+            
+                {% endblock Navigation %}
+            </div>           
+        </div>
+    </nav>
+    {% endblock body %}
+  </body>
+</html>

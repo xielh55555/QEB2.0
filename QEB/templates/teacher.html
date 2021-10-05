@@ -1,0 +1,41 @@
+{% extends 'base.html' %} 
+{% block title %}QEB老师管理{% endblock %} 
+
+{% block Navigation %}
+<div class="carousel slide" id="carousel-176804" style="background-color: brown;width:80%;margin:  55px;"></div>
+  <ul class="nav nav-tabs">
+    <li class="active" style="background-color: rgb(240, 173, 78)">
+      <a href="/teacher" style="font-size: larg; color: rgb(243, 8, 8)">教师管理</a
+      >
+    </li>
+    {% for teacher in teachers %}
+    <li style="background-color: rgb(240, 173, 78)"><a href="/teacher/{{ teacher.id }}" style=" color: rgb(0,0,0)" >{{ teacher.name }}</a></li>
+    {% endfor %}
+    
+  </ul>
+
+  <div  class="container item active"  style="height: 100%; width: 100%; margin: 30px">
+    {% for teacher in teachers %}
+    <div  class="jumbotron"  style="
+        height: 385px;
+        width: 300px;
+        float: left;
+        background-color: rgba(245, 189, 11,0.45);
+        margin: 10px 20px;
+      "
+    >
+      <div style="margin: 20px auto">
+        <img alt="" src="/media/{{ teacher.imgae }}" class="img-thumbnail" />
+      </div>
+      <div style="margin: 40px auto">
+        <h1>
+          <a href="/teacher/classroom/{{ teacher.id }}"
+            ><span class="label label-warning">{{ teacher.name }}</span></a
+          >
+        </h1>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock Navigation %}

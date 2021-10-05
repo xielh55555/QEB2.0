@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+ {% block title %}QEB财务管理——新增支出明细{% endblock%} 
+ {% block Navigation %}
+ <div class="carousel slide" id="carousel-176804" style="margin:55px 0;">
+<ul class="nav nav-tabs">
+  <!-- <li style="background-color: aqua;"><a href="/teacher" style="font-size: larger;color: rgb(243, 8, 8);">教师管理</a></li> -->
+
+  <li style="color: rgb(255,255,255)">
+    <a href="{% url 'expenditure' %}">支出明细</a>
+  </li>
+  <li style="color: rgb(255,255,255)">
+    <a href="{% url 'income' %}">收入明细</a>
+  </li>
+  <li style="color: rgb(255,255,255)"><a href="#">课时提成</a></li>
+  <li style="color: rgb(255,255,255)"><a href="#">工作核算</a></li>
+</ul>
+
+<div class="panel panel-danger">
+  <div class="panel-heading">
+    <h3 class="panel-title">增加支出明细</h3>
+  </div>
+  <div class="panel-body">
+    <form class="form-horizontal" role="form" method="POST">
+      {% csrf_token %}
+
+      <div class="form-group">
+        <label for="name" class="col-sm-2 control-label"
+          >明细 <span style="color: rgb(236, 20, 20)">*</span></label
+        >
+        <div class="col-sm-2">
+          <input type="text" class="form-control" id="name" name="name" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="money" class="col-sm-2 control-label"
+          >金额 <span style="color: rgb(236, 20, 20)">*</span></label
+        >
+        <div class="col-sm-2">
+          <input type="text" class="form-control" id="money" name="money" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="year" class="col-sm-2 control-label"
+          >年份 <span style="color: rgb(236, 20, 20)">*</span></label
+        >
+        <div class="col-sm-2">
+          <select class="form-control" name="year">
+            <option value="{{date_year}}" selected>{{date_year}}</option>
+            {% for year in year_choices %}
+            <option>{{ year }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="month" class="col-sm-2 control-label"
+          >月份 <span style="color: rgb(236, 20, 20)">*</span></label
+        >
+        <div class="col-sm-2">
+          <select class="form-control" name="month">
+            <option value="{{date_month}}" selected>{{date_month}}</option>
+            {% for month in month_choices %}
+            <option>{{ month }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="remarks" class="col-sm-2 control-label"
+          >说明 <span style="color: rgb(236, 20, 20)">*</span></label
+        >
+        <div class="col-sm-2">
+          <input type="text" class="form-control" id="remarks" name="remarks" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-success">确定</button>
+        </div>
+
+        <div class="col-sm-offset-2 col-sm-10">
+          <p style="color: rgb(240, 13, 13)">{{ messages_1 }}</p>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+ </div>
+{% endblock Navigation %}

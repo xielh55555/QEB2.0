@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+
+{% block title %}QEB学生管理{% endblock %}
+{% block Navigation %}
+<div class="carousel slide" id="carousel-176804" style="margin:55px 0;">
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h1 class="panel-title">学生名册//目前在校学员合计<span class="label label-danger">{{ students_num }} 人</span></h1>
+    </div>
+    <div class="panel-body">
+            
+        <div class="col-sm-4">
+            <div class="form-group" style="float: left;">
+                <form role="searchs" method="POST" id="searchform" >
+                    {% csrf_token %}   
+                    {% if page == 1 %}
+                        <input type="search" name="q"  placeholder="学生姓名" required > 
+                    {% else %}
+                        <input type="search" name="q"  placeholder="学生姓名" required disabled> 
+                    {% endif %}
+                    <button type="submit" name="search" class="glyphicon glyphicon-search  btn btn-warning" >搜索</button>
+                  
+                </form>  
+            </div>
+
+            <div class="form-group" style="float: right;">
+                <form role="searchs" method="POST" id="searchform" >
+                    {% csrf_token %} 
+                            
+                            <button type="submit" name="add" class="glyphicon glyphicon-plus btn btn-success ">增加新学员</button>
+                            <button type="submit" name="warning" class="glyphicon glyphicon-exclamation-sign btn btn-danger ">课时预警</button>
+                            
+                </form>
+            </div>                      
+
+        </div>
+        
+        <table class="table table-hover">
+            
+            <thead>
+                <tr>
+                    <!-- <th>编号</th> -->
+                    <th>姓名</th>
+                    <th>年龄</th>
+                    <th>性别</th>
+                    <th>上课时间</th>
+                    <th>课程</th>
+                    <th>老师</th>
+                    <th>教室</th>
+                    <th>剩余课时</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {% for student in students %}
+
+                    {% if student.Remaining_lesson_J < 10 %}
+                         
+                        <tr class="active danger">
+                           
+                            <td>{{ student.name }}</td>
+                            <td>{{ student.age }}</td>
+                            <td>{{ student.gender }}</td>
+                            <td>{{ student.time }}</td>
+                            <td>{{ student.curriculum }}</td>
+                            <td>{{ student.teacher }}</td>
+                            <td>{{ student.classroom }}</td>
+                            <td>{{ student.Remaining_lesson_J }}</td>
+                            <td><a href="/student/{{ student.id }}">编辑</a></td>
+                        </tr>
+                            
+                    {% else %}
+                        <tr class="active">
+                           
+                            <td>{{ student.name }}</td>
+                            <td>{{ student.age }}</td>
+                            <td>{{ student.gender }}</td>
+                            <td>{{ student.time }}</td>
+                            <td>{{ student.curriculum }}</td>
+                            <td>{{ student.teacher }}</td>
+                            <td>{{ student.classroom }}</td>
+                            <td>{{ student.Remaining_lesson_J }}</td>
+                            <td><a href="/student/{{ student.id }}">编辑</a></td>
+                        </tr>            
+                    {% endif %}
+                
+                {% endfor %}
+
+
+            </tbody>
+        </table>
+
+        <div>
+            <ul class="pagination">
+                <li><a href="/student/?page=1">首页</a></li>
+                {% if students.has_previous %}
+                    <li><a href="/student/?page={{ students.previous_page_number }}">上一页</a></li>
+                {% endif %}
+
+                {% for num in students.paginator.page_range %}
+                <li><a href="/student/?page={{ num }}">{{ num }}</a></li>
+                {% endfor %}
+
+                    {% if students.has_next %}
+                            <li><a href="/student/?page={{ students.next_page_number }}">下一页</a></li>
+                    {% endif %}
+                        <li><a href="/student/?page={{ students.paginator.num_pages }}">尾页</a></li>
+                    </ul>
+                </div>
+            </ul>
+        </div>
+
+
+        
+
+    </div>  
+</div>
+</div>
+  {% endblock Navigation %} 

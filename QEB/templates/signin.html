@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>趣儿编系统登录</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <!-- <link rel="stylesheet" href="//at.alicdn.com/t/font_2341084_ggvvxpiawy.css"> -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<!--     
+    <div class="img_1">
+        
+        <img src="" alt="" style='width: 100%;height: 100%;' >
+        
+    </div> -->
+    <form action="" method="post" style="margin: 200px 500px;">
+        {% csrf_token %}
+        <div class="login-container">
+            <div class="left-container">
+                <div class="title">
+                    <span id="login_1">系统登录</span>
+                </div>
+                <div class="input-container">
+                    <input type="text"name="username" id="username" placeholder=" 用户名">
+                    <input type="password"name="password" id="password" placeholder="密码">
+                </div>
+                <div class="message-container">
+                    <span>忘记密码</span>
+                </div>
+            </div>
+            <div class="right-container">
+                <!-- <div class="regist-container">
+                    <span class="regist">注册</span>
+                </div> -->
+                <div class="actoin-container">
+                    <button type="submit"class="btn btn-success" >登录</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+
+</html>

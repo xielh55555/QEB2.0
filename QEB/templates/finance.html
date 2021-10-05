@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block title %}QEB财务管理{% endblock %}
+{% block Navigation %}
+<div class="carousel slide" id="carousel-176804" style="margin:55px 0;"">
+<ul class="nav nav-tabs" >
+  <!-- <li style="background-color: aqua;"><a href="/teacher" style="font-size: larger;color: rgb(243, 8, 8);">教师管理</a></li> -->
+    
+    <li ><a href="{% url 'expenditure' %}" style="color: rgb(0,0,0);">支出明细</a></li>
+    <li ><a href="{% url 'income' %}" style="color: rgb(0,0,0);">收入明细</a></li>
+    <li ><a href="#" style="color: rgb(0,0,0);">课时提成</a></li>
+    <li ><a href="#" style="color: rgb(0,0,0);">工资核算</a></li>
+    
+</ul>
+
+<div style="width: 100%;text-align: center;">
+     <h1>{{ year }}年度财务报表</h1>
+     {{ total }}
+     {{ date }}
+</div>
+ 
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th style="background-color: rgb(245, 189, 11);"><font color="#fff">项目名称</font></th>
+      <th style="background-color: rgb(245, 189, 11);"><font color="#fff">1月</font></th>
+      <th style="background-color: rgb(245, 189, 11);"><font color="#fff">2月</font></th>
+      <th style="background-color: rgb(245, 189, 11);"><font color="#fff">3月</font></th>
+      <th style="background-color: rgb(245, 189, 11);"><font color="#fff">4月</font></th>
+      <th style="background-color: rgb(245, 189, 11);"><font color="#fff">5月</font></th>
+      <th style="background-color: rgb(245, 189, 11);"><font color="#fff">6月</font></th>
+      <th style="background-color: rgb(245, 189, 11);"><font color="#fff">7月</font></th>
+      <th style="background-color: rgb(245, 189, 11);"><font color="#fff">8月</font></th>
+      <th style="background-color: rgb(245, 189, 11);"><font color="#fff">9月</font></th>
+      <th style="background-color: rgb(245, 189, 11);"><font color="#fff">10月</font></th>
+      <th style="background-color: rgb(245, 189, 11);"><font color="#fff">11月</font></th>
+      <th style="background-color: rgb(245, 189, 11);"><font color="#fff">12月</font></th>
+      <th style="background-color: rgb(245, 189, 11);"><font color="#fff">合计</font></th>
+    </tr>
+  </thead>
+  <tbody>      
+    <tr class="active danger">
+      <th style="background-color: rgb(245, 189, 11);"><font color="#fff">收入合计</font></th>
+      {% for income_total in income_total_list %}
+      <th>{{income_total}}</th>
+      {% endfor %}
+      <th>{{income_total}}</th>
+    </tr>
+    <tr class="active danger">
+      <th style="background-color: rgb(245, 189, 11);"><font color="#fff">支出合计</font></th>
+      {% for expenditure_total in expenditure_total_list %}
+      <th>{{expenditure_total}}</th>
+      {% endfor %}
+      <th>{{expenditure_total}}</th>
+    </tr>
+    <tr class="active danger">
+      <th style="background-color: rgb(245, 189, 11);"><font color="#fff">节余</font></th>
+      {% for total in totalall_list %}
+      <th>{{total}}</th>
+      {% endfor %}
+      <th  style="color: fuchsia;">{{totalall}}</th>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+{% endblock Navigation %}
